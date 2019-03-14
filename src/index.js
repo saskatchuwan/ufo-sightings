@@ -1,7 +1,12 @@
 import * as d3 from 'd3';
 
+//---------------------
+// Starter Data
+//---------------------
 
+let rawData;
 d3.json("ufo-raw.json").then(function(data) {
+  rawData = data;
   console.log(data);
 });
 
@@ -22,4 +27,14 @@ let circle = canvas.append("circle")
             .attr("cy", 250)
             .attr("r", 50)
             .attr("fill", "green");
+
+
+let dataArray = [20, 40, 50];
+let bars = canvas.selectAll("rect")
+          .data(dataArray)
+          .enter()
+            .append("rect")
+            .attr("width", function(d) {return d;})
+            .attr("height", 50)
+            .attr("y", function(d, i) {return i * 100;});
 
