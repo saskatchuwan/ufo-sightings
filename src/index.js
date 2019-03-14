@@ -3,11 +3,11 @@
 //---------------------
 import * as d3 from 'd3';
 
-import baseNodes from './data/nodes';
-import baseLinks from './data/links';
+import nodes from './data/nodes';
+import links from './data/links';
 
-const nodes = [...baseNodes];
-const links = [...baseLinks];
+console.log(nodes);
+console.log(links);
 
 const width = window.innerWidth;
 const height = window.innerHeight;
@@ -35,7 +35,7 @@ const simulation = d3
   .forceSimulation()
   .force('link', linkForce)
   .force('charge', d3.forceManyBody().strength(-120))
-  .force('center', d3.forceCenter(width / 2, height / 2))
+  .force('center', d3.forceCenter(width / 2, height / 2));
 
 
 function getNodeColor(node) {
@@ -55,9 +55,10 @@ let nodeElements = svg.append("g")
     .attr("r", 10)
     .attr("fill", getNodeColor);
 
-    
+
+//.enter identifies any DOM elements that need to be added when the joined array is longer than the selection. It's defined on an update selection (the slection returne dby .data). .enter returns an enter slection, which basically represents the elements that need to be added. it's usually followed by a.ppend which adds elements to the DOM.
+
 let textElements = svg.append("g")
-//text labels
   .attr("class", "texts")
   .selectAll("text")
   .data(nodes)
@@ -99,3 +100,5 @@ let linkElements = svg.append("g")
 
   //apply all links to the link source
   simulation.force("link").links(links);
+
+

@@ -9,5 +9,6 @@ export default [
   { id: 'bee', group: 1, label: 'Bees', level: 2 },
   { id: 'fish', group: 2, label: 'Fish', level: 1 },
   { id: 'carp', group: 2, label: 'Carp', level: 2 },
-  { id: 'pike', group: 2, label: 'Pikes', level: 2 }
-]
+  { id: 'pike', group: 2, label: 'Pikes', level: 2 },
+  { id: 'sloth', group: 0, label: 'Sloths', level: 2 }
+];
