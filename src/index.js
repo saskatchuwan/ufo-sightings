@@ -1,9 +1,9 @@
 import * as d3 from 'd3';
 
 
-// d3.json("./ufo-raw.json", function(data) {
-//   console.log(data);
-// });
+d3.json("ufo-raw.json").then(function(data) {
+  console.log(data);
+});
 
 console.log("Webpack is working");
 
