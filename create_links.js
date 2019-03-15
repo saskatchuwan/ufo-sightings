@@ -16,7 +16,8 @@
 
 // export default links;
 
-import * as data from './ufo-2013.json';
+// import * as data from './ufo-2013.json';
+const rawData = require('./ufo-2013.json');
 
 let links = [
   { target: 'center', source: 'circle', strength: 0.1 },
@@ -44,7 +45,7 @@ let links = [
 
 ];
 
-data.forEach(element => {
+rawData.forEach(element => {
   let linkEntry;
 
   if (element.city === 'los angeles') {

@@ -22,5 +22,9 @@ module.exports = {
       }
     ]
   }, 
-  plugins: [HtmlWebpackPluginConfig]
+  plugins: [HtmlWebpackPluginConfig],
+  resolve: {
+    extensions: ['.js', '*']
+  },
+  mode: "development",
 };

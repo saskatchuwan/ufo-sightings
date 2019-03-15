@@ -1,5 +1,5 @@
-import * as data from './ufo-2013.json';
-
+// import * as data from './ufo-2013.json';
+const rawData = require('./ufo-2013.json');
 
 let nodes = [];
 
@@ -55,7 +55,7 @@ let classification = {
   center: {id: 100, label: ''},
 };
 
-data.forEach(element => {
+rawData.forEach(element => {
   let nodeEntry;
   // console.log(element.city);
   if (element.city === 'los angeles') {
