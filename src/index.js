@@ -1,14 +1,19 @@
 //---------------------
 // https://medium.com/ninjaconcept/interactive-dynamic-force-directed-graphs-with-d3-da720c6d7811
 //---------------------
+
+import nodes from'../clean_data';
+
 import * as d3 from 'd3';
 import * as util from './util';
 
-import nodes from './data/nodes';
+// import nodes from './data/nodes';
 import links from './data/links';
 
 console.log(nodes);
-console.log(links);
+// console.log(links);
+
+// console.log(nodescleaned);
 
 const width = window.innerWidth;
 const height = window.innerHeight;
@@ -51,8 +56,8 @@ let nodeElements = svg.append("g")
   .data(nodes)
   .enter().append("circle")
     // need to figure this out to make circles have size according to their duration
-    .attr("r", util.getNodeDuration)
-    // .attr("r", 10)
+    // .attr("r", util.getNodeDuration)
+    .attr("r", 5)
     .attr("fill", util.getNodeColor)
     .on('mouseover',function(d, i) {
       d3.select(this)
@@ -92,7 +97,7 @@ let linkElements = svg.append("g")
       .attr("stroke-width", 1)
       .attr("stroke", "rgba(50, 50, 50, 0.7)");
 
-console.log(linkElements);
+// console.log(linkElements);
 
 
 //start the simulation and define a tick function that is executed on every simulation tick
@@ -110,14 +115,14 @@ console.log(linkElements);
     //update link positions 
     //simply tells one end of the line to follow one node around
     //and the other end of the line to follow the other node around
-    linkElements
-      .attr('x1', util.getLinkSourcePosX)
-      .attr('y1', util.getLinkSourcePosY)
-      .attr('x2', util.getLinkTargetPosX)
-      .attr('y2', util.getLinkTargetPosY);
+    // linkElements
+    //   .attr('x1', util.getLinkSourcePosX)
+    //   .attr('y1', util.getLinkSourcePosY)
+    //   .attr('x2', util.getLinkTargetPosX)
+    //   .attr('y2', util.getLinkTargetPosY);
   
   });
 
   //apply all links to the link source
-  simulation.force("link").links(links);
+  // simulation.force("link").links(links);
 
