@@ -4,6 +4,7 @@ import * as data from './ufo-2013.json';
 let nodes = [];
 
 nodes = [
+  { id: 'center', group: 100, label: 'Center', duration: 0, comment: "", level: 0 },
   { id: 'circle', group: 0, label: 'Circles', duration: 100, comment: "", level: 1 },
   { id: 'triangle', group: 1, label: 'Triangles', duration: 100, comment: "", level: 1 },
   { id: 'cylinder', group: 2, label: 'Cylinders', duration: 100, comment: "", level: 1 },
@@ -51,12 +52,13 @@ let classification = {
   light: {id: 19, label: 'Lights'},
   unknown: {id: 20, label: 'Unknowns'},
   '': {id: 21, label: ''},
+  center: {id: 100, label: ''},
 };
 
 data.forEach(element => {
   let nodeEntry;
   // console.log(element.city);
-  if (element.city === 'san francisco') {
+  if (element.city === 'los angeles') {
     if (Object.keys(classification).includes(element.shape)) {
       nodeEntry = {id: `${element.id}`, 
         group: classification[element.shape].id, 
