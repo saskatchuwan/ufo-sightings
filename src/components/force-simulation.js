@@ -10,13 +10,14 @@ import * as d3 from 'd3';
 import * as util from '../util';
 
 
-const width = window.innerWidth;
-const height = window.innerHeight;
+const width = window.innerWidth * 0.5;
+const height = window.innerHeight * 0.8;
 
 //select an svg element with d3, will function as a canvas for our graph later
 const svg = d3.select('svg');
 
 svg.attr('width', width).attr('height', height);
+
 
 
 // we use svg groups to logically group the elements together
@@ -32,6 +33,7 @@ const linkForce = d3
   .forceLink()
   .id(link => link.id)
   .strength(link => link.strength);
+
 
 
 const simulation = d3
@@ -95,14 +97,14 @@ let nodeElements = svg.append("g")
 
 //.enter identifies any DOM elements that need to be added when the joined array is longer than the selection. It's defined on an update selection (the slection returne dby .data). .enter returns an enter slection, which basically represents the elements that need to be added. it's usually followed by a.ppend which adds elements to the DOM.
 
-let textElements = svg.append("g")
-  .attr("class", "texts")
-  .selectAll("text")
-  .data(nodes)
-  .enter().append("text")
-    .text(util.getNodeLabel)
-	  .attr("dx", 15)
-    .attr("dy", 4);
+// let textElements = svg.append("g")
+//   .attr("class", "texts")
+//   .selectAll("text")
+//   .data(nodes)
+//   .enter().append("text")
+//     .text(util.getNodeLabel)
+// 	  .attr("dx", 15)
+//     .attr("dy", 4);
 
 
 let linkElements = svg.append("g")
@@ -124,9 +126,9 @@ function tickActions() {
     .attr('cx', util.getNodePosX)
     .attr('cy', util.getNodePosY);
 
-  textElements
-    .attr('x', util.getNodePosX)
-    .attr('y', util.getNodePosY);
+  // textElements
+  //   .attr('x', util.getNodePosX)
+  //   .attr('y', util.getNodePosY);
 
   //update link positions 
   //simply tells one end of the line to follow one node around
