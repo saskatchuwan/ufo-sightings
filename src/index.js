@@ -46,6 +46,24 @@ const simulation = d3
   .force("collide",d3.forceCollide())
   .force('center', d3.forceCenter(width / 2, height / 2));
 
+const dragDrop = d3.drag()
+  .on('start', node => {
+    node.fx = node.x;
+    node.fy = node.y;
+  })
+  .on('drag', node => {
+    simulation.alphaTarget(0.7).restart();
+    node.fx = d3.event.x;
+    node.fy = d3.event.y;
+  })
+  .on('end', node => {
+    if (!d3.event.active) {
+      simulation.alphaTarget(0);
+    }
+    node.fx = null;
+    node.fy = null;
+});
+
 
 //The SVG <g> element is used to group SVG shapes together. 
 //Once grouped you can transform the whole group of shapes as if 
@@ -59,8 +77,9 @@ let nodeElements = svg.append("g")
   .enter().append("circle")
     // need to figure this out to make circles have size according to their duration
     // .attr("r", util.getNodeDuration)
-    .attr("r", 2)
+    .attr("r", 10)
     .attr("fill", util.getNodeColor)
+    .call(dragDrop)
     .on('mouseover',function(d, i) {
       d3.select(this)
         .transition()

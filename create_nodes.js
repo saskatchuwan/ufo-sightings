@@ -55,26 +55,23 @@ let classification = {
 
 data.forEach(element => {
   let nodeEntry;
-  if (Object.keys(classification).includes(element.shape)) {
-    nodeEntry = {id: `${element.id}`, 
-      group: classification[element.shape].id, 
-      label: element.datetime,
-      groupName: element.shape,
-      duration: element["duration (seconds)"],
-      comment: element.comments,
-      level: 2,
-    };
-  } else {
-    nodeEntry = {id: `${element.id}`, 
-      group: 18, 
-      label: element.datetime,
-      groupName: "other",
-      duration: element["duration (seconds)"],
-      comment: element.comments,
-      level: 2,
-    };
+  // console.log(element.city);
+  if (element.city === 'san francisco') {
+    if (Object.keys(classification).includes(element.shape)) {
+      nodeEntry = {id: `${element.id}`, 
+        group: classification[element.shape].id, 
+        label: element.datetime,
+        groupName: element.shape,
+        duration: element["duration (seconds)"],
+        comment: element.comments,
+        level: 2,
+      };
+
+      nodes.push(nodeEntry);
+    }
   }
-  nodes.push(nodeEntry);
+
+  
 });
 
 
