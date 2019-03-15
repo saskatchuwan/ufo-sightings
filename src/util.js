@@ -2,6 +2,7 @@ export const getNodeColor = (node) => {
   return (
     node.level === 1 ? 'green' : 'orange'
 )};
+
 export const getNodeLabel = (node) => (node.label);
 export const getNodeDuration = (node) => (node.duration);
 export const getNodePosX = (node) => (node.x);

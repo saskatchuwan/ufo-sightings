@@ -2,18 +2,16 @@
 // https://medium.com/ninjaconcept/interactive-dynamic-force-directed-graphs-with-d3-da720c6d7811
 //---------------------
 
-import nodes from'../clean_data';
+import nodes from '../create_nodes';
+// import links from '../create_links';
+import links from './data/links';
 
 import * as d3 from 'd3';
 import * as util from './util';
 
-// import nodes from './data/nodes';
-import links from './data/links';
 
 console.log(nodes);
-// console.log(links);
-
-// console.log(nodescleaned);
+console.log(links);
 
 const width = window.innerWidth;
 const height = window.innerHeight;
@@ -40,7 +38,7 @@ const linkForce = d3
 const simulation = d3
   .forceSimulation()
   .force('link', linkForce)
-  .force('charge', d3.forceManyBody().strength(-120))
+  .force('charge', d3.forceManyBody().strength(-50))
   .force("collide",d3.forceCollide())
   .force('center', d3.forceCenter(width / 2, height / 2));
 
@@ -57,7 +55,7 @@ let nodeElements = svg.append("g")
   .enter().append("circle")
     // need to figure this out to make circles have size according to their duration
     // .attr("r", util.getNodeDuration)
-    .attr("r", 5)
+    .attr("r", 2)
     .attr("fill", util.getNodeColor)
     .on('mouseover',function(d, i) {
       d3.select(this)
@@ -79,14 +77,14 @@ let nodeElements = svg.append("g")
 
 //.enter identifies any DOM elements that need to be added when the joined array is longer than the selection. It's defined on an update selection (the slection returne dby .data). .enter returns an enter slection, which basically represents the elements that need to be added. it's usually followed by a.ppend which adds elements to the DOM.
 
-let textElements = svg.append("g")
-  .attr("class", "texts")
-  .selectAll("text")
-  .data(nodes)
-  .enter().append("text")
-    .text(util.getNodeLabel)
-	  .attr("dx", 15)
-    .attr("dy", 4);
+// let textElements = svg.append("g")
+//   .attr("class", "texts")
+//   .selectAll("text")
+//   .data(nodes)
+//   .enter().append("text")
+//     .text(util.getNodeLabel)
+// 	  .attr("dx", 15)
+//     .attr("dy", 4);
 
 
 let linkElements = svg.append("g")
@@ -99,30 +97,32 @@ let linkElements = svg.append("g")
 
 // console.log(linkElements);
 
-
 //start the simulation and define a tick function that is executed on every simulation tick
 //update the coordinates of both node and text elements
-  simulation.nodes(nodes).on('tick', () => {
-    //update circle positions each tick of the simulation 
-    nodeElements
-      .attr('cx', util.getNodePosX)
-      .attr('cy', util.getNodePosY);
+simulation.nodes(nodes).on('tick', tickActions);
 
-    textElements
-      .attr('x', util.getNodePosX)
-      .attr('y', util.getNodePosY);
+//apply all links to the link source
+simulation.force("link").links(links);
 
-    //update link positions 
-    //simply tells one end of the line to follow one node around
-    //and the other end of the line to follow the other node around
-    // linkElements
-    //   .attr('x1', util.getLinkSourcePosX)
-    //   .attr('y1', util.getLinkSourcePosY)
-    //   .attr('x2', util.getLinkTargetPosX)
-    //   .attr('y2', util.getLinkTargetPosY);
+
   
-  });
+function tickActions() {
+  //update circle positions each tick of the simulation 
+  nodeElements
+    .attr('cx', util.getNodePosX)
+    .attr('cy', util.getNodePosY);
 
-  //apply all links to the link source
-  // simulation.force("link").links(links);
+  // textElements
+  //   .attr('x', util.getNodePosX)
+  //   .attr('y', util.getNodePosY);
 
+  //update link positions 
+  //simply tells one end of the line to follow one node around
+  //and the other end of the line to follow the other node around
+  linkElements
+    .attr('x1', util.getLinkSourcePosX)
+    .attr('y1', util.getLinkSourcePosY)
+    .attr('x2', util.getLinkTargetPosX)
+    .attr('y2', util.getLinkTargetPosY);
+
+}
