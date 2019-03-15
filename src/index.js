@@ -2,6 +2,7 @@
 // https://medium.com/ninjaconcept/interactive-dynamic-force-directed-graphs-with-d3-da720c6d7811
 //---------------------
 import * as d3 from 'd3';
+import * as util from './util';
 
 import nodes from './data/nodes';
 import links from './data/links';
@@ -38,10 +39,6 @@ const simulation = d3
   .force('center', d3.forceCenter(width / 2, height / 2));
 
 
-function getNodeColor(node) {
-  return node.level === 1 ? 'red' : 'gray';
-}
-
 //The SVG <g> element is used to group SVG shapes together. 
 //Once grouped you can transform the whole group of shapes as if 
 //it was a single shape. This is an advantage compared to a nested <svg> 
@@ -53,7 +50,23 @@ let nodeElements = svg.append("g")
   .data(nodes)
   .enter().append("circle")
     .attr("r", 10)
-    .attr("fill", getNodeColor);
+    .attr("fill", util.getNodeColor)
+    .on('mouseover',function(d, i) {
+      d3.select(this)
+        .transition()
+        .duration(100)
+        .attr('r', 20)
+        .attr('fill', util.getNodeColor); })
+    .on('mouseout', function(d, i) {
+      // return the mouseover'd element
+      // to being smaller
+      d3.select(this)
+        .transition()
+        .duration(100)
+        .attr('r', 10)
+        .attr('fill', util.getNodeColor);
+    });
+
 
 
 //.enter identifies any DOM elements that need to be added when the joined array is longer than the selection. It's defined on an update selection (the slection returne dby .data). .enter returns an enter slection, which basically represents the elements that need to be added. it's usually followed by a.ppend which adds elements to the DOM.
@@ -63,7 +76,7 @@ let textElements = svg.append("g")
   .selectAll("text")
   .data(nodes)
   .enter().append("text")
-    .text(function (node) { return  node.label; })
+    .text(util.getNodeLabel)
 	  .attr("font-size", 15)
 	  .attr("dx", 15)
     .attr("dy", 4);
@@ -75,30 +88,34 @@ let linkElements = svg.append("g")
     .data(links)
     .enter().append("line")
       .attr("stroke-width", 1)
-      .attr("stroke", "rgba(50, 50, 50, 0.2)");
+      .attr("stroke", "rgba(50, 50, 50, 0.7)");
+
+console.log(linkElements);
 
 
 //start the simulation and define a tick function that is executed on every simulation tick
 //update the coordinates of both node and text elements
   simulation.nodes(nodes).on('tick', () => {
-
+    //update circle positions each tick of the simulation 
     nodeElements
-      .attr('cx', function (node) { return node.x; })
-      .attr('cy', function (node) { return node.y; });
+      .attr('cx', util.getNodePosX)
+      .attr('cy', util.getNodePosY);
 
     textElements
-      .attr('x', function (node) { return node.x; })
-      .attr('y', function (node) { return node.y; });
+      .attr('x', util.getNodePosX)
+      .attr('y', util.getNodePosY);
 
+    //update link positions 
+    //simply tells one end of the line to follow one node around
+    //and the other end of the line to follow the other node around
     linkElements
-      .attr('x1', function (link) { return link.source.x; })
-      .attr('y1', function (link) { return link.source.y; })
-      .attr('x2', function (link) { return link.target.x; })
-      .attr('y2', function (link) { return link.target.y; });
+      .attr('x1', util.getLinkSourcePosX)
+      .attr('y1', util.getLinkSourcePosY)
+      .attr('x2', util.getLinkTargetPosX)
+      .attr('y2', util.getLinkTargetPosY);
   
   });
 
   //apply all links to the link source
   simulation.force("link").links(links);
-
 
