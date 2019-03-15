@@ -1,4 +1,4 @@
-export const createNodes = (rawData) => {
+export const createNodes = (rawData, cityName) => {
 
     let nodes = [];
 
@@ -57,7 +57,7 @@ export const createNodes = (rawData) => {
     rawData.forEach(element => {
       let nodeEntry;
 
-      if (element.city === 'chicago') {
+      if (element.city === cityName) {
         if (Object.keys(classification).includes(element.shape)) {
           nodeEntry = {id: `${element.id}`, 
             group: classification[element.shape].id, 

@@ -1,4 +1,4 @@
-export const createLinks = (rawData) => {
+export const createLinks = (rawData, cityName) => {
 
   let links = [
     { target: 'center', source: 'circle', strength: 0.1 },
@@ -29,7 +29,7 @@ export const createLinks = (rawData) => {
   rawData.forEach(element => {
     let linkEntry;
 
-    if (element.city === 'chicago') {
+    if (element.city === cityName) {
       linkEntry = {
         // id: element.id,
         target: element.shape,
