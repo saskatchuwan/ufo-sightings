@@ -35,6 +35,7 @@ const linkForce = d3
   .strength(link => link.strength);
 
 
+  
 
 const simulation = d3
   .forceSimulation()
