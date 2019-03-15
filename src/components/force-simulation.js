@@ -2,9 +2,8 @@
 // https://medium.com/ninjaconcept/interactive-dynamic-force-directed-graphs-with-d3-da720c6d7811
 //---------------------
 
-import nodes from '../../create_nodes';
-import links from '../../create_links';
-
+import { createNodes } from '../../create_nodes';
+import { createLinks } from '../../create_links';
 
 import * as d3 from 'd3';
 import * as util from '../util';
@@ -12,6 +11,16 @@ import * as util from '../util';
 
 const width = window.innerWidth * 0.5;
 const height = window.innerHeight * 0.8;
+
+
+const rawData = require('../../ufo-2013.json');
+
+let nodes = createNodes(rawData);
+let links = createLinks(rawData);
+
+console.log(nodes);
+console.log(links);
+
 
 //select an svg element with d3, will function as a canvas for our graph later
 const svg = d3.select('svg');
@@ -34,8 +43,6 @@ const linkForce = d3
   .id(link => link.id)
   .strength(link => link.strength);
 
-
-  
 
 const simulation = d3
   .forceSimulation()
