@@ -2,13 +2,3 @@ body {
   background-color: rgb(158, 218, 218);
 }
 
-/* Test Data:  https://bl.ocks.org/mbostock/1093130*/
-/* .links line {
-  stroke: #aaa;
-}
-
-.nodes circle {
-  pointer-events: all;
-  stroke: none;
-  stroke-width: 40px;
-} */

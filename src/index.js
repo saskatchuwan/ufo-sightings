@@ -36,6 +36,7 @@ const simulation = d3
   .forceSimulation()
   .force('link', linkForce)
   .force('charge', d3.forceManyBody().strength(-120))
+  .force("collide",d3.forceCollide())
   .force('center', d3.forceCenter(width / 2, height / 2));
 
 
@@ -49,7 +50,9 @@ let nodeElements = svg.append("g")
   .selectAll("circle")
   .data(nodes)
   .enter().append("circle")
-    .attr("r", 10)
+    // need to figure this out to make circles have size according to their duration
+    .attr("r", util.getNodeDuration)
+    // .attr("r", 10)
     .attr("fill", util.getNodeColor)
     .on('mouseover',function(d, i) {
       d3.select(this)
@@ -77,7 +80,6 @@ let textElements = svg.append("g")
   .data(nodes)
   .enter().append("text")
     .text(util.getNodeLabel)
-	  .attr("font-size", 15)
 	  .attr("dx", 15)
     .attr("dy", 4);
 
