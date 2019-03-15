@@ -23,6 +23,9 @@ nodes = [
   { id: 'cross', group: 16, label: 'Crosses', duration: 100, comment: "", level: 1 },
   { id: 'cone', group: 17, label: 'Cones', duration: 100, comment: "", level: 1 },
   { id: 'other', group: 18, label: 'Others', duration: 100, comment: "", level: 1 },
+  { id: 'light', group: 19, label: 'Lights', duration: 100, comment: "", level: 1 },
+  { id: 'unknown', group: 20, label: 'Unknowns', duration: 100, comment: "", level: 1 },
+  { id: '', group: 21, label: '', duration: 100, comment: "", level: 1 },
 ];
 
 let classification = {
@@ -45,6 +48,9 @@ let classification = {
   cross: {id: 16, label: 'Crosses'},
   cone: {id: 17, label: 'Cones'},
   other: {id: 18, label: 'Others'},
+  light: {id: 19, label: 'Lights'},
+  unknown: {id: 20, label: 'Unknowns'},
+  '': {id: 21, label: ''},
 };
 
 data.forEach(element => {

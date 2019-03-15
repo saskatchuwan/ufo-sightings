@@ -3,8 +3,10 @@
 //---------------------
 
 import nodes from '../create_nodes';
-// import links from '../create_links';
-import links from './data/links';
+import links from '../create_links';
+
+// import links from './data/links';
+// import nodes from './data/nodes';
 
 import * as d3 from 'd3';
 import * as util from './util';
@@ -28,6 +30,8 @@ svg.attr('width', width).attr('height', height);
 // const textGroup = svg.append('g').attr('class', 'texts');
 
 
+
+
 // simulation setup with all forces
 const linkForce = d3
   .forceLink()
@@ -38,7 +42,7 @@ const linkForce = d3
 const simulation = d3
   .forceSimulation()
   .force('link', linkForce)
-  .force('charge', d3.forceManyBody().strength(-50))
+  .force('charge', d3.forceManyBody().strength(-10))
   .force("collide",d3.forceCollide())
   .force('center', d3.forceCenter(width / 2, height / 2));
 
@@ -95,18 +99,16 @@ let linkElements = svg.append("g")
       .attr("stroke-width", 1)
       .attr("stroke", "rgba(50, 50, 50, 0.7)");
 
-// console.log(linkElements);
+
 
 //start the simulation and define a tick function that is executed on every simulation tick
 //update the coordinates of both node and text elements
 simulation.nodes(nodes).on('tick', tickActions);
 
-//apply all links to the link source
-simulation.force("link").links(links);
-
 
   
 function tickActions() {
+  // console.log(links);
   //update circle positions each tick of the simulation 
   nodeElements
     .attr('cx', util.getNodePosX)
@@ -119,6 +121,7 @@ function tickActions() {
   //update link positions 
   //simply tells one end of the line to follow one node around
   //and the other end of the line to follow the other node around
+
   linkElements
     .attr('x1', util.getLinkSourcePosX)
     .attr('y1', util.getLinkSourcePosY)
@@ -126,3 +129,10 @@ function tickActions() {
     .attr('y2', util.getLinkTargetPosY);
 
 }
+
+//apply all links to the link source
+simulation.force("link").links(links);
+
+
+
+
