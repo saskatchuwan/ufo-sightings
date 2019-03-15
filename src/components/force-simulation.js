@@ -16,6 +16,7 @@ const height = window.innerHeight * 0.8;
 
 export const buildForceLayout = (rawData, cityName) => {
 
+
   let nodes = createNodes(rawData, cityName);
   let links = createLinks(rawData, cityName);
 
@@ -25,6 +26,10 @@ export const buildForceLayout = (rawData, cityName) => {
 
   //select an svg element with d3, will function as a canvas for our graph later
   const svg = d3.select('svg');
+
+  svg.selectAll(".links").remove();
+  svg.selectAll(".nodes").remove();
+
 
   svg.attr('width', width).attr('height', height);
 
