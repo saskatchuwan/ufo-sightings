@@ -120,7 +120,7 @@ export const buildForceLayout = (rawData, cityName) => {
     .enter().append("text")
       .attr("id", util.getCustomNodeId)
       .text(util.getNodeLabel)
-      .attr("fill", "transparent")
+      .attr("visibility", "hidden")
   	  .attr("dx", 15)
       .attr("dy", 4);
 
@@ -134,12 +134,12 @@ export const buildForceLayout = (rawData, cityName) => {
       .on('mouseover', function(d) {
         svg.selectAll(`text`)
           .filter(`#${util.getCustomNodeId(d)}`)
-          .attr("fill", "black");
+          .attr("visibility", "visible");
       })
       .on('mouseout', function(d) {
         svg.selectAll(`text`)
           .filter(`#${util.getCustomNodeId(d)}`)
-          .attr("fill", "transparent");
+          .attr("visibility", "hidden");
       });
 
     textElements

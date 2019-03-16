@@ -22,7 +22,6 @@ export const getSelectedText = (elementId) => {
 };
 
 export const setCityTitle = () => {
-  console.log("he");
   let select = document.getElementById("city-title");
   select.innerHTML = `${getSelectedText("city-select")} '13`;
 };
