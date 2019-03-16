@@ -9,8 +9,8 @@ import * as d3 from 'd3';
 import * as util from '../util';
 
 
-const width = window.innerWidth * 0.5;
-const height = window.innerHeight * 0.8;
+const width = window.innerWidth * 0.6;
+const height = window.innerHeight * 0.81;
 
 
 

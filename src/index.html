@@ -8,16 +8,17 @@
   <link rel="stylesheet" type="text/css" media="screen" href="./src/main.css">
 </head>
 <body>
-    <h1>UFO Sightings</h1>
-    <div class='svg-container'>
-      <svg id='viz' ></svg>
+    <header><h1>UFO Sightings</h1></header>
+
+    <div class="main">
+      <div class="select-container">
+        <select size="50" id='city-select'></select>
+      </div>
+
+      <div class='svg-container'>
+          <svg id='viz' ></svg>
+      </div>
     </div>
 
-    <form id='form'>
-      city: 
-      <br>
-      <input id='city-input' type='text' name='city'><br>
-      <input type='submit' value='submit'><br>
-    </form>
 </body>
 </html>

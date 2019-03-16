@@ -1,15 +1,20 @@
 import { buildForceLayout } from './components/force-simulation';
 import { createNodes } from '../create_nodes';
+import { createSelect, getSelectedText } from './components/select';
 const rawData = require('../ufo-2013.json');
 
 
 
 document.addEventListener('DOMContentLoaded', () => {
+
   window.createNodes = createNodes;
   window.rawData = rawData;
 
   //run simulation function
-  buildForceLayout(rawData, 'los angeles');
+  buildForceLayout(rawData, 'boston');
+
+  //build select box
+  createSelect();
 });
 
 
@@ -19,18 +24,9 @@ const setCity = (cityInput) => {
   buildForceLayout(rawData, cityInput);
 };
 
-document.getElementById("form").addEventListener('submit', (e) => {
-
+document.getElementById("city-select").addEventListener('change', (e) => {
   e.preventDefault();
-
-  console.log('target value');
-  console.log(e.target.value);
-
-  // let elem = document.querySelector('#viz');
-  // elem.parentNode.removeChild(elem);
-
-  setCity(e.target.value);
-
+  setCity(getSelectedText("city-select"));
 });
 
 

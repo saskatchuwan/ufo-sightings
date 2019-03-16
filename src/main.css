@@ -11,12 +11,42 @@ body {
   align-content: center;
 }
 
-h1 {
-  
+.main {
+  display: flex;
+  flex-direction: row;
+}
+
+.select-container {
+  flex: 1 ;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: orange;
+  width: 300px;
+  margin-right: 20px;
+}
+
+#city-select {
+  width: 200px;
+  height: 300px;
+  text-align: center;
+}
+
+select:focus {
+  border: 0 transparent;
 }
 
 svg {
   background-color: bisque;
+}
+
+.svg-container {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  flex: 3.5;
+  /* background-color: green; */
 }
 
 /* 
@@ -27,9 +57,9 @@ svg {
   padding-bottom: 100%;
   vertical-align: top;
   overflow: hidden;
-}
+} */
 
-.svg-content {
+/* .svg-content {
   display: inline-block;
   position: absolute;
   top: 0;
