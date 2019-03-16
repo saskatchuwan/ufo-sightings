@@ -1,6 +1,6 @@
 import { buildForceLayout } from './components/force-simulation';
 import { createNodes } from '../create_nodes';
-import { createSelect, getSelectedText } from './components/select';
+import { createSelect, getSelectedText, setCityTitle } from './components/select';
 const rawData = require('../ufo-2013.json');
 import './main.scss';
 
@@ -21,6 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
 document.getElementById("city-select").addEventListener('change', (e) => {
   e.preventDefault();
   buildForceLayout(rawData, getSelectedText("city-select"));
+  setCityTitle();
 });
 
 

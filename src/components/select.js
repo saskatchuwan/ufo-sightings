@@ -20,3 +20,9 @@ export const getSelectedText = (elementId) => {
     return elem.options[elem.selectedIndex].text;
   }
 };
+
+export const setCityTitle = () => {
+  console.log("he");
+  let select = document.getElementById("city-title");
+  select.innerHTML = `${getSelectedText("city-select")} '13`;
+};

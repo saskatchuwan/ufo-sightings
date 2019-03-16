@@ -27,6 +27,7 @@ body {
         margin-right: 20px;
       }
             #city-select {
+              cursor: pointer;
               width: 200px;
               height: 300px;
               text-align: center;
@@ -43,12 +44,23 @@ body {
         /* background-color: green; */
       }
           svg {
+            position: relative;
             background-color: bisque;
+            cursor: default;
 
-            text {
-              background-color: yellow;
-              z-index: 100;
+            circle {
+              cursor: pointer;
             }
+          }
+
+          #city-title {
+            position: absolute;
+            // background-color: green;
+            text-align: end;
+            font-size: 1.5vw;
+            width: 20%;
+            bottom: 7%;
+            right: 11%;
           }
 
 

@@ -13,10 +13,7 @@ const width = window.innerWidth * 0.6;
 const height = window.innerHeight * 0.81;
 
 
-
 export const buildForceLayout = (rawData, cityName) => {
-
-
   let nodes = createNodes(rawData, cityName);
   let links = createLinks(rawData, cityName);
 
@@ -34,13 +31,10 @@ export const buildForceLayout = (rawData, cityName) => {
   svg.attr('width', width).attr('height', height);
 
 
-
   // we use svg groups to logically group the elements together
   // const linkGroup = svg.append('g').attr('class', 'links');
   // const nodeGroup = svg.append('g').attr('class', 'nodes');
   // const textGroup = svg.append('g').attr('class', 'texts');
-
-
 
 
   // simulation setup with all forces
@@ -82,7 +76,6 @@ export const buildForceLayout = (rawData, cityName) => {
   //element which cannot be the target of transformation by itself.
 
 
-
   let linkElements = svg.append("g")
       .attr("class", "links")
       .selectAll("line")
@@ -101,22 +94,6 @@ export const buildForceLayout = (rawData, cityName) => {
       .attr("fill", util.getNodeColor)
       .call(dragDrop);
 
-
-  // svg.selectAll("circle")
-  //     .on('mouseover', function(d, i) {
-  //         console.log("mouse over");
-  //         d3.select(this)
-  //           .append("text")
-  //           .style("color", 'black')
-  //           .text("hello");})
-  //     .on('mouseout', function(d, i) {
-  //         console.log("mouse out");
-  //         d3.select(this)
-  //           .selectAll("text")
-  //           .remove();
-  //       });
-
-  
       // .on('mouseover',function(d, i) {
       //   d3.select(this)
       //     .transition()
@@ -188,10 +165,4 @@ export const buildForceLayout = (rawData, cityName) => {
   //apply all links to the link source
   simulation.force("link").links(links);
 
-
-
-
-
-
-
-}
+};
