@@ -1,3 +1,5 @@
+import * as d3 from 'd3';
+
 export const getNodeColor = (node) => {
   if (node.level === 0) {
     return 'gray';
@@ -9,17 +11,24 @@ export const getNodeColor = (node) => {
 };
 
 export const getNodeLabel = (node) => (node.label);
+export const getNodeId = (node) => (node.id);
 export const getNodeDuration = (node) => (node.duration);
 export const getNodePosX = (node) => (node.x);
 export const getNodePosY = (node) => (node.y);
 
 export const setNodeRadius = (node) => {
-  console.log(node.duration);
-
   if (node.level < 2) {
     return 9;
   } else {
     return Math.log10(node.duration) * 5;
+  }
+};
+
+export const getCustomNodeId = (node) => {
+  if (["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"].includes(node.id[0])) {
+    return( "a" + node.id);
+  } else {
+    return node.id;
   }
 };
 

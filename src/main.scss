@@ -44,6 +44,11 @@ body {
       }
           svg {
             background-color: bisque;
+
+            text {
+              background-color: yellow;
+              z-index: 100;
+            }
           }
 
 

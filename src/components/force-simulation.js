@@ -91,32 +91,32 @@ export const buildForceLayout = (rawData, cityName) => {
         .attr("stroke-width", 1)
         .attr("stroke", "rgba(50, 50, 50, 0.3)");
 
-
   let nodeElements = svg.append("g")
     .attr("class", "nodes")
     .selectAll("circle")
     .data(nodes)
     .enter().append("circle")
+      .attr("id", util.getCustomNodeId)
       .attr("r", util.setNodeRadius)
       .attr("fill", util.getNodeColor)
-      .call(dragDrop)
-      .on('mouseover', function(d, i) {
-        d3.select(this)
-          .transition()
-          .duration(100)
-          .attr('r', 20)
-          .attr('fill', util.getNodeColor); })
-      .on('mouseout', function(d, i) {
-        // return the mouseover'd element
-        // to being smaller
-        d3.select(this)
-          .transition()
-          .duration(100)
-          .attr('r', 10)
-          .attr('fill', util.getNodeColor);
-      });
+      .call(dragDrop);
 
 
+  // svg.selectAll("circle")
+  //     .on('mouseover', function(d, i) {
+  //         console.log("mouse over");
+  //         d3.select(this)
+  //           .append("text")
+  //           .style("color", 'black')
+  //           .text("hello");})
+  //     .on('mouseout', function(d, i) {
+  //         console.log("mouse out");
+  //         d3.select(this)
+  //           .selectAll("text")
+  //           .remove();
+  //       });
+
+  
       // .on('mouseover',function(d, i) {
       //   d3.select(this)
       //     .transition()
@@ -134,8 +134,6 @@ export const buildForceLayout = (rawData, cityName) => {
       // });
 
 
-
-
   //.enter identifies any DOM elements that need to be added when the joined array is longer than the selection. It's defined on an update selection (the slection returne dby .data). .enter returns an enter slection, which basically represents the elements that need to be added. it's usually followed by a.ppend which adds elements to the DOM.
 
   let textElements = svg.append("g")
@@ -143,23 +141,34 @@ export const buildForceLayout = (rawData, cityName) => {
     .selectAll("text")
     .data(nodes)
     .enter().append("text")
+      .attr("id", util.getCustomNodeId)
       .text(util.getNodeLabel)
+      .attr("fill", "transparent")
   	  .attr("dx", 15)
       .attr("dy", 4);
 
 
     
   function tickActions() {
-    // console.log(links);
     //update circle positions each tick of the simulation 
     nodeElements
       .attr('cx', util.getNodePosX)
-      .attr('cy', util.getNodePosY);
+      .attr('cy', util.getNodePosY)
+      .on('mouseover', function(d) {
+        svg.selectAll(`text`)
+          .filter(`#${util.getCustomNodeId(d)}`)
+          .attr("fill", "black");
+      })
+      .on('mouseout', function(d) {
+        svg.selectAll(`text`)
+          .filter(`#${util.getCustomNodeId(d)}`)
+          .attr("fill", "transparent");
+      });
 
     textElements
       .attr('x', util.getNodePosX)
       .attr('y', util.getNodePosY);
-
+      
     //update link positions 
     //simply tells one end of the line to follow one node around
     //and the other end of the line to follow the other node around
@@ -171,8 +180,6 @@ export const buildForceLayout = (rawData, cityName) => {
       .attr('y2', util.getLinkTargetPosY);
 
   }
-
-
 
   //start the simulation and define a tick function that is executed on every simulation tick
   //update the coordinates of both node and text elements
