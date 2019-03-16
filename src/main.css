@@ -22,7 +22,7 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: orange;
+  /* background-color: orange; */
   width: 300px;
   margin-right: 20px;
 }
@@ -33,9 +33,8 @@ body {
   text-align: center;
 }
 
-select:focus {
-  border: 0 transparent;
-}
+
+select:focus {outline:0;}
 
 svg {
   background-color: bisque;

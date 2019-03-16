@@ -31,7 +31,6 @@ export const createLinks = (rawData, cityName) => {
 
     if (element.city === cityName) {
       linkEntry = {
-        // id: element.id,
         target: element.shape,
         source: `${element.id}`,
         strength: 0.7,

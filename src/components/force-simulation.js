@@ -81,13 +81,13 @@ export const buildForceLayout = (rawData, cityName) => {
   //it was a single shape. This is an advantage compared to a nested <svg> 
   //element which cannot be the target of transformation by itself.
 
+
   let nodeElements = svg.append("g")
     .attr("class", "nodes")
     .selectAll("circle")
     .data(nodes)
     .enter().append("circle")
-      // .attr("r", util.getNodeDuration)
-      .attr("r", 10)
+      .attr("r", util.setNodeRadius)
       .attr("fill", util.getNodeColor)
       .call(dragDrop);
 
