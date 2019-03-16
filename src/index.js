@@ -2,7 +2,7 @@ import { buildForceLayout } from './components/force-simulation';
 import { createNodes } from '../create_nodes';
 import { createSelect, getSelectedText } from './components/select';
 const rawData = require('../ufo-2013.json');
-
+import './main.scss';
 
 document.addEventListener('DOMContentLoaded', () => {
 

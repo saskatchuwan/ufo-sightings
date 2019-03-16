@@ -53,7 +53,7 @@ export const buildForceLayout = (rawData, cityName) => {
   const simulation = d3
     .forceSimulation()
     .force('link', linkForce)
-    .force('charge', d3.forceManyBody().strength(-80))
+    .force('charge', d3.forceManyBody().strength(-100))
     .force("collide",d3.forceCollide())
     .force('center', d3.forceCenter(width / 2, height / 2));
 
@@ -82,6 +82,16 @@ export const buildForceLayout = (rawData, cityName) => {
   //element which cannot be the target of transformation by itself.
 
 
+
+  let linkElements = svg.append("g")
+      .attr("class", "links")
+      .selectAll("line")
+      .data(links)
+      .enter().append("line")
+        .attr("stroke-width", 1)
+        .attr("stroke", "rgba(50, 50, 50, 0.3)");
+
+
   let nodeElements = svg.append("g")
     .attr("class", "nodes")
     .selectAll("circle")
@@ -89,7 +99,23 @@ export const buildForceLayout = (rawData, cityName) => {
     .enter().append("circle")
       .attr("r", util.setNodeRadius)
       .attr("fill", util.getNodeColor)
-      .call(dragDrop);
+      .call(dragDrop)
+      .on('mouseover', function(d, i) {
+        d3.select(this)
+          .transition()
+          .duration(100)
+          .attr('r', 20)
+          .attr('fill', util.getNodeColor); })
+      .on('mouseout', function(d, i) {
+        // return the mouseover'd element
+        // to being smaller
+        d3.select(this)
+          .transition()
+          .duration(100)
+          .attr('r', 10)
+          .attr('fill', util.getNodeColor);
+      });
+
 
       // .on('mouseover',function(d, i) {
       //   d3.select(this)
@@ -109,27 +135,17 @@ export const buildForceLayout = (rawData, cityName) => {
 
 
 
+
   //.enter identifies any DOM elements that need to be added when the joined array is longer than the selection. It's defined on an update selection (the slection returne dby .data). .enter returns an enter slection, which basically represents the elements that need to be added. it's usually followed by a.ppend which adds elements to the DOM.
 
-  // let textElements = svg.append("g")
-  //   .attr("class", "texts")
-  //   .selectAll("text")
-  //   .data(nodes)
-  //   .enter().append("text")
-  //     .text(util.getNodeLabel)
-  // 	  .attr("dx", 15)
-  //     .attr("dy", 4);
-
-
-  let linkElements = svg.append("g")
-      .attr("class", "links")
-      .selectAll("line")
-      .data(links)
-      .enter().append("line")
-        .attr("stroke-width", 1)
-        .attr("stroke", "rgba(50, 50, 50, 0.3)");
-
-
+  let textElements = svg.append("g")
+    .attr("class", "texts")
+    .selectAll("text")
+    .data(nodes)
+    .enter().append("text")
+      .text(util.getNodeLabel)
+  	  .attr("dx", 15)
+      .attr("dy", 4);
 
 
     
@@ -140,9 +156,9 @@ export const buildForceLayout = (rawData, cityName) => {
       .attr('cx', util.getNodePosX)
       .attr('cy', util.getNodePosY);
 
-    // textElements
-    //   .attr('x', util.getNodePosX)
-    //   .attr('y', util.getNodePosY);
+    textElements
+      .attr('x', util.getNodePosX)
+      .attr('y', util.getNodePosY);
 
     //update link positions 
     //simply tells one end of the line to follow one node around
