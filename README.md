@@ -3,6 +3,8 @@
 
 Urban Space Oddity is a data visualization showcasing the occurances of UFO sightings across different cities in 2013 using a force-based graph.
 
+![app-screenshot](https://github.com/saskatchuwan/ufo-sightings/tree/master/src/assets/app-screengrab.png)
+
 ## Functionality & Features
 ### 1. Interactive force-based graph
 + Users are able to interact with the force-based graph layout to drag and drop nodes
