@@ -10,7 +10,12 @@ import * as util from '../util';
 
 
 const width = window.innerWidth * 0.6;
-const height = window.innerHeight * 0.81;
+const height = window.innerHeight;
+
+const svgContainer = document.getElementsByClassName('svg-container');
+
+
+
 
 
 export const buildForceLayout = (rawData, cityName) => {
@@ -19,7 +24,6 @@ export const buildForceLayout = (rawData, cityName) => {
 
   console.log(nodes);
   console.log(links);
-
 
   //select an svg element with d3, will function as a canvas for our graph later
   const svg = d3.select('svg');
