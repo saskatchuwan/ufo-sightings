@@ -1,6 +1,5 @@
 import { cities } from '../data/cities';
 
-
 export const createSelect = () => {
 
   let select = document.getElementById("city-select");

@@ -19,7 +19,6 @@ const nodeInfo = (node) => (
   `
 );
 
-
 export const createTooltip = (node) => {
   const htmlContent = (node.level > 1) ? nodeInfo(node) : node.label;
 
@@ -33,20 +32,3 @@ export const removeTooltip = () => {
   tooltip.style("opacity", 0);
 };
 
-
-
-      // .on('click',function(d, i) {
-      //   d3.select(this)
-      //     .transition()
-      //     .duration(100)
-      //     .attr('r', 20)
-      //     .attr('fill', util.getNodeColor); })
-      // .on('mouseout', function(d, i) {
-      //   // return the mouseover'd element
-      //   // to being smaller
-      //   d3.select(this)
-      //     .transition()
-      //     .duration(100)
-      //     .attr('r', 10)
-      //     .attr('fill', util.getNodeColor);
-      // });
