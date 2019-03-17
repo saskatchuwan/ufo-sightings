@@ -3,21 +3,42 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>UFOs</title>
+  <title>Space Oddity</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" type="text/css" media="screen" href="./src/main.css">
+  <link href="https://fonts.googleapis.com/css?family=Audiowide" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" media="screen" href="./src/main.scss">
 </head>
 <body>
-    <h1>UFO Sightings</h1>
-    <div class='svg-container'>
-      <svg id='viz' ></svg>
+    
+
+    <div class="main">
+      <div class="left-rail">
+        <h1>SPACE ODDITY</h1>
+
+        <br />
+      
+        <p class='subheader'>
+          A unique visual rendering of UFO sightings by cities via forced-based graph.
+        </p>
+
+        <h3>Select a city:</h3>
+        <select size="50" id='city-select'></select>
+        <br />
+        
+        <h3>How to read & interact:</h3>
+        <p class='directions'>
+          First-level nodes represent the shape of UFO that was sighted. Second-level nodes represent the UFO sighting occurance.
+          The size of the second-level nodes are scaled according to the duration of that sighting. Hover over each second-level node 
+          to see more details.
+        </p>
+      </div>
+
+      <div class='svg-container'>
+          <svg id='viz' ></svg>
+          <h2 id='city-title'>los angeles '13</h2>
+      </div>
     </div>
 
-    <form id='form'>
-      city: 
-      <br>
-      <input id='city-input' type='text' name='city'><br>
-      <input type='submit' value='submit'><br>
-    </form>
 <script type="text/javascript" src="main.js"></script></body>
 </html>
