@@ -4,9 +4,9 @@ export const getNodeColor = (node) => {
   if (node.level === 0) {
     return 'gray';
   } else if (node.level === 1) {
-    return 'green';
+    return '#0A7547';
   } else {
-    return 'orange';
+    return '#F9A93C';
   }
 };
 

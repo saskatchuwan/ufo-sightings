@@ -3,17 +3,28 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>UFOs</title>
+  <title>Space Oddity</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css?family=Audiowide" rel="stylesheet">
   <link rel="stylesheet" type="text/css" media="screen" href="./src/main.scss">
 </head>
 <body>
-    <header><h1>UFO Sightings</h1></header>
+    
 
     <div class="main">
-      <div class="select-container">
-        <h2>Cities</h2>
+      <div class="left-rail">
+        <h1>SPACE ODDITY</h1>
+        <br />
+      
+        <h3>A unique visual rendering of UFO sightings by cities via forced-based graph.</h3>
+
+        <h3>Select a city:</h3>
         <select size="50" id='city-select'></select>
+
+        <h3>How to read & interact:</h3>
+        First-level nodes represent the shape of UFO that was sighted. Second-level nodes represent the UFO sighting occurance.
+        The size of the second-level nodes are scaled according to the duration of that sighting. Hover over each second-level node 
+        to see more details.
       </div>
 
       <div class='svg-container'>

@@ -26,6 +26,7 @@ export const buildForceLayout = (rawData, cityName) => {
 
   svg.selectAll(".links").remove();
   svg.selectAll(".nodes").remove();
+  svg.selectAll(".texts").remove();
 
 
   svg.attr('width', width).attr('height', height);
