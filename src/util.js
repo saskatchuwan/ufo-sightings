@@ -1,5 +1,3 @@
-import * as d3 from 'd3';
-
 export const getNodeColor = (node) => {
   if (node.level === 0) {
     return 'gray';

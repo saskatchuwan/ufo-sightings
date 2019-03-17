@@ -1,4 +1,3 @@
-import * as util from '../util';
 import * as d3 from 'd3';
 
 const tooltip = d3.select("body").append("div")
@@ -22,7 +21,9 @@ const nodeInfo = (node) => (
 
 
 export const createTooltip = (node) => {
-  tooltip.html(nodeInfo(node))
+  const htmlContent = (node.level > 1) ? nodeInfo(node) : node.label;
+
+  tooltip.html(htmlContent)
       .style("top", d3.event.pageY + 10 + "px")
       .style("left", d3.event.pageX + 10 + "px")
       .style("opacity", 1);

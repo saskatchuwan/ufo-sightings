@@ -124,8 +124,6 @@ export const buildForceLayout = (rawData, cityName) => {
     nodeElements
       .attr('cx', util.getNodePosX)
       .attr('cy', util.getNodePosY);
-
-
       
     //update link positions 
     //simply tells one end of the line to follow one node around
