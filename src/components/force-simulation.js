@@ -12,11 +12,6 @@ import * as util from '../util';
 const width = window.innerWidth * 0.6;
 const height = window.innerHeight;
 
-const svgContainer = document.getElementsByClassName('svg-container');
-
-
-
-
 
 export const buildForceLayout = (rawData, cityName) => {
   let nodes = createNodes(rawData, cityName);

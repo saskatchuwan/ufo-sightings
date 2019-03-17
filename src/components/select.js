@@ -8,7 +8,7 @@ export const createSelect = () => {
   for ( let i = 0; i < cities.length; i++) {
     select.options[select.options.length] = new Option(cities[i], i);
   }
-
+  
 };
 
 export const getSelectedText = (elementId) => {

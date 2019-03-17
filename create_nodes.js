@@ -3,7 +3,7 @@ export const createNodes = (rawData, cityName) => {
     let nodes = [];
 
     nodes = [
-      { id: 'center', group: 100, label: 'Center', duration: 149, comment: "", level: 0 },
+      { id: 'center', group: 100, label: '', duration: 149, comment: "", level: 0 },
       { id: 'circle', group: 0, label: 'Circles', duration: 149, comment: "", level: 1 },
       { id: 'triangle', group: 1, label: 'Triangles', duration: 149, comment: "", level: 1 },
       { id: 'cylinder', group: 2, label: 'Cylinders', duration: 149, comment: "", level: 1 },

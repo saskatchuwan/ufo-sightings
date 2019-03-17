@@ -57,6 +57,7 @@ h1 {
             text-transform: uppercase;
             color:#811A5A;
             font-weight: bold;
+            letter-spacing: +0.05em;
           }
 
           #city-select {
@@ -64,7 +65,26 @@ h1 {
             width: 200px;
             height: 300px;
             text-align: center;
-            font-size: 13px;
+            font-size: 12px;
+            border: 0 transparent;
+
+              option {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                text-transform: uppercase;
+                letter-spacing: +0.08em;
+                height: 30px;
+              }
+
+              option:hover {
+                background-color: rgba(24, 163, 178, 0.171);
+                transition: .15s ease-in-out;
+              }
+
+              option:checked {
+                background-color: rgba(24, 163, 178, 0.171);
+              }
           }
 
           select:focus {outline:0;}
