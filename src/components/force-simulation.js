@@ -7,6 +7,7 @@ import { createLinks } from '../../create_links';
 
 import * as d3 from 'd3';
 import * as util from '../util';
+import { createTooltip, removeTooltip} from '../components/tooltip';
 
 
 const width = window.innerWidth * 0.6;
@@ -92,24 +93,9 @@ export const buildForceLayout = (rawData, cityName) => {
       .attr("id", util.getCustomNodeId)
       .attr("r", util.setNodeRadius)
       .attr("fill", util.getNodeColor)
-      .call(dragDrop);
-
-      // .on('mouseover',function(d, i) {
-      //   d3.select(this)
-      //     .transition()
-      //     .duration(100)
-      //     .attr('r', 20)
-      //     .attr('fill', util.getNodeColor); })
-      // .on('mouseout', function(d, i) {
-      //   // return the mouseover'd element
-      //   // to being smaller
-      //   d3.select(this)
-      //     .transition()
-      //     .duration(100)
-      //     .attr('r', 10)
-      //     .attr('fill', util.getNodeColor);
-      // });
-
+      .call(dragDrop)
+      .on('click', createTooltip)
+      .on('mouseout', removeTooltip);
 
   //.enter identifies any DOM elements that need to be added when the joined array is longer than the selection. It's defined on an update selection (the slection returne dby .data). .enter returns an enter slection, which basically represents the elements that need to be added. it's usually followed by a.ppend which adds elements to the DOM.
 
@@ -125,26 +111,21 @@ export const buildForceLayout = (rawData, cityName) => {
       .attr("dy", 4);
 
 
+  // let tooltip = d3.select("body").append("div")
+  //   .attr("class", "tooltip")
+  //   .style("opacity", 0)
+  //   .attr("dx", 15)
+  //   .attr("dy", 4);
+
+
     
   function tickActions() {
     //update circle positions each tick of the simulation 
     nodeElements
       .attr('cx', util.getNodePosX)
-      .attr('cy', util.getNodePosY)
-      .on('mouseover', function(d) {
-        svg.selectAll(`text`)
-          .filter(`#${util.getCustomNodeId(d)}`)
-          .attr("visibility", "visible");
-      })
-      .on('mouseout', function(d) {
-        svg.selectAll(`text`)
-          .filter(`#${util.getCustomNodeId(d)}`)
-          .attr("visibility", "hidden");
-      });
+      .attr('cy', util.getNodePosY);
 
-    textElements
-      .attr('x', util.getNodePosX)
-      .attr('y', util.getNodePosY);
+
       
     //update link positions 
     //simply tells one end of the line to follow one node around

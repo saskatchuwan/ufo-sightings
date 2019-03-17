@@ -62,8 +62,12 @@ export const createNodes = (rawData, cityName) => {
           nodeEntry = {id: `${element.id}`, 
             group: classification[element.shape].id, 
             label: element.datetime,
+            city: element.city,
+            state: element.state,
+            country: element.country,
             groupName: element.shape,
             duration: element["duration (seconds)"],
+            durationFormatted: element["duration (hours/min)"],
             comment: element.comments,
             level: 2,
           };
