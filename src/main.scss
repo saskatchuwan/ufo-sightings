@@ -159,3 +159,19 @@ h1 {
           
   }
 
+  footer {
+    align-self: flex-end;
+    z-index: 10;
+    padding: 10px;
+    font-size: 11px;
+
+    a {
+      text-decoration: none;
+      color: #18A3B2;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+  }
+
